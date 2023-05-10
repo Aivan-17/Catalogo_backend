@@ -22,15 +22,15 @@ public class ProductoModel {
         private String categoria;
 
         private Integer status;
-    @Lob
-    private byte[] imagen;
+    //@Lob
+    private String imagen;
 
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

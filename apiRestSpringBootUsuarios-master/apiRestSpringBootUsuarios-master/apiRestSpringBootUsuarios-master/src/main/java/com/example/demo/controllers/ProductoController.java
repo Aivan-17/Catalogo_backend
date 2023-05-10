@@ -1,15 +1,19 @@
 package com.example.demo.controllers;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.UUID;
 
 
 import com.example.demo.models.ProductoModel;
 import com.example.demo.models.UsuarioModel;
 import com.example.demo.services.ProductoService;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +39,24 @@ public class ProductoController {
         System.out.println(producto);
 
         return productoService.guardarProducto(producto);
+
+    }
+
+    @PostMapping("/image")
+    public void getImage(@RequestParam("image") MultipartFile file){
+        String path= new File("apiRestSpringBootUsuarios-master/apiRestSpringBootUsuarios-master/src/main/images").getAbsolutePath();
+        //String path = "C:\\Users\\GABO\\Desktop\\taller\\Catalogo_backend\\apiRestSpringBootUsuarios-master\\apiRestSpringBootUsuarios-master\\apiRestSpringBootUsuarios-master\\images";
+        String name= UUID.randomUUID().toString()+file.getOriginalFilename();
+        try {
+            //byte[] bytes = IOUtils.toByteArray(file.getInputStream());
+
+           // Path path = Paths.get("./src/main/images"+"/"+ UUID.randomUUID().toString()+file.getOriginalFilename());
+            file.transferTo( new File(path+ "\\" + name)); //no lo guarda con tipo pero se puede habrir desde el navegador
+            //Files.write(path,bytes);
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
