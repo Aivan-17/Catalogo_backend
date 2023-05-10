@@ -15,6 +15,10 @@ import com.example.demo.models.UsuarioModel;
 import com.example.demo.services.ProductoService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -59,6 +63,23 @@ public class ProductoController {
 
 
     }
+
+
+
+    @GetMapping(path="/image/{imagename}")
+    public ResponseEntity<Resource> findImage(@PathVariable("imagename") String id) throws IOException {
+        String path= new File("apiRestSpringBootUsuarios-master/apiRestSpringBootUsuarios-master/src/main/images").getAbsolutePath();
+        //File archivo = new File(path+"\\"+id);
+        //System.out.println(archivo.getPath());
+        //System.out.println(archivo.getName());
+        Path root = Paths.get("apiRestSpringBootUsuarios-master/apiRestSpringBootUsuarios-master/src/main/images");
+        Path file = root.resolve(id);
+        Resource resource = new UrlResource(file.toUri());
+
+        return  ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
+    }
+
 
     @GetMapping( path = "/{id}")
     public Optional<ProductoModel> obtenerProductoPorId(@PathVariable("id") Long id) {
