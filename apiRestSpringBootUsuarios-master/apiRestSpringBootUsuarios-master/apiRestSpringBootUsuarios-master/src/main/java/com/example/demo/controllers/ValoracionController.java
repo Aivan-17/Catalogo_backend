@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 
+import com.example.demo.models.ProductoModel;
 import com.example.demo.models.ValoracionModel;
 import com.example.demo.services.ValoracionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,8 @@ public class ValoracionController {
     }
 
     @GetMapping("/query")
-    public ArrayList<ValoracionModel> obtenerValoracionPorIdProducto(@RequestParam("idProducto") Integer idProducto){
-        return this.valoracionService.obtenerPorIdProducto(idProducto);
+    public ArrayList<ValoracionModel> obtenerValoracionPorIdProducto(@RequestParam("idProducto")ProductoModel idProducto){
+        return this.valoracionService.obtenerPorIdProducto(idProducto.getIdProducto());
     }
 
 

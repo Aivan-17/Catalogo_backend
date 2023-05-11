@@ -38,9 +38,9 @@ public class ProductoController {
         return productoService.obtenerProducto();
     }
 
-    @PostMapping()
+    @PostMapping("/query")
     public ProductoModel guardarProducto(@ModelAttribute ProductoModel producto, @RequestParam("image") MultipartFile file) throws IOException {
-        String path= new File("apiRestSpringBootUsuarios-master/apiRestSpringBootUsuarios-master/src/main/images").getAbsolutePath();
+        String path= new File("C:/Users/GABO/Desktop/Catalogo_frontend/Catalogo_Frontend/src/assets").getAbsolutePath();
         //String path = "C:\\Users\\GABO\\Desktop\\taller\\Catalogo_backend\\apiRestSpringBootUsuarios-master\\apiRestSpringBootUsuarios-master\\apiRestSpringBootUsuarios-master\\images";
         String name= UUID.randomUUID().toString()+file.getOriginalFilename();
         try {
@@ -53,12 +53,12 @@ public class ProductoController {
             throw new RuntimeException(e);
         }
 
-
+String p="./assets/";
      //  producto.setImagen(name);
-        System.out.println(name);
+        System.out.println(p+name);
 
         System.out.println(producto);
-producto.setImagen(name);
+producto.setImagen(p+name);
         return productoService.guardarProducto(producto);
 
     }

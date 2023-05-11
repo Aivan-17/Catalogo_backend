@@ -44,7 +44,7 @@ public class ValoracionService {
     }
 
 
-    public ArrayList<ValoracionModel>  obtenerPorIdProducto(Integer idProducto) {
+    public ArrayList<ValoracionModel>  obtenerPorIdProducto(Long idProducto) {
 
 
         return valoracionRepository.findByIdProducto(idProducto);

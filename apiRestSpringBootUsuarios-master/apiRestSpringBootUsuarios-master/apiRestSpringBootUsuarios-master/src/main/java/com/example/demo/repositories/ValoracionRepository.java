@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ValoracionRepository extends CrudRepository<ValoracionModel, Long> {
-    public abstract ArrayList<ValoracionModel> findByIdProducto(Integer idProducto);
+    public abstract ArrayList<ValoracionModel> findByIdProducto(Long idProducto);
     public abstract ArrayList<ValoracionModel> findByStatus(Integer status);
 
 }
