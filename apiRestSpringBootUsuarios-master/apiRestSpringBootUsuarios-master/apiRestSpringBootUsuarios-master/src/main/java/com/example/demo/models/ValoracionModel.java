@@ -11,7 +11,7 @@ public class ValoracionModel {
     @Column(name = "id_valoracion",unique = true, nullable = false)
     private Long idValoracion;
 
-    private Double calificacion;
+    private Integer calificacion;
     private Integer status;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario")
@@ -28,11 +28,11 @@ public class ValoracionModel {
         this.idValoracion = idValoracion;
     }
 
-    public Double getCalifiacion() {
+    public Integer getCalifiacion() {
         return calificacion;
     }
 
-    public void setCalificacion(Double calificacion) {
+    public void setCalificacion(Integer calificacion) {
         this.calificacion = calificacion;
     }
 
