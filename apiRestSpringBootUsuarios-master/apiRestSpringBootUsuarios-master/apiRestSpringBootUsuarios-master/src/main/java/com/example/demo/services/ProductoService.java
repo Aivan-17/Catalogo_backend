@@ -11,6 +11,7 @@ import java.util.Optional;
 import com.example.demo.models.ProductoModel;
 
 
+import com.example.demo.models.UsuarioModel;
 import com.example.demo.repositories.ProductoRepository;
 import com.example.demo.repositories.UsuarioRepository;
 import org.apache.commons.io.IOUtils;
@@ -68,8 +69,9 @@ public class ProductoService {
 
 
 
-    public ArrayList<ProductoModel>  obtenerPorIdUsuario(Integer idProducto) {
-        return ProductoRepository.findByIdProducto(idProducto);
+    public ArrayList<ProductoModel>  obtenerPorIdUsuario(UsuarioModel usuarioModel) {
+
+        return ProductoRepository.findByIdUsuarioAndStatus(usuarioModel, 1);
     }
 
     public boolean eliminarProducto(Long idProducto) {

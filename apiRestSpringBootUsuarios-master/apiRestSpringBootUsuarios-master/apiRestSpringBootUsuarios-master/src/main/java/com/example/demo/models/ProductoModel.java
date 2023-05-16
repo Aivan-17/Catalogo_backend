@@ -25,6 +25,9 @@ public class ProductoModel {
     private Integer vistas;
     //@Lob
     private String imagen;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_usuario")
+    private UsuarioModel idUsuario;
 
     public Integer getVistas() {
         return vistas;
@@ -51,9 +54,7 @@ public class ProductoModel {
     }
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_usuario")
-    private UsuarioModel idUsuario;
+
 
 
         public Long getIdProducto() {

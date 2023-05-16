@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -12,8 +11,9 @@ import java.util.UUID;
 
 import com.example.demo.models.ProductoModel;
 import com.example.demo.models.UsuarioModel;
+import com.example.demo.repositories.ProductoRepository;
+import com.example.demo.repositories.UsuarioRepository;
 import com.example.demo.services.ProductoService;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -28,9 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductoController {
     @Autowired
     ProductoService  productoService;
+    @Autowired
+    UsuarioRepository usuarioRepository;
+private final ProductoRepository productoRepository;
+    public ProductoController(ProductoService productoService, ProductoRepository productoRepository) {
 
-    public ProductoController(com.example.demo.services.ProductoService productoService) {
-
+        this.productoRepository = productoRepository;
     }
 
     @GetMapping()
@@ -138,6 +141,15 @@ producto.setImagen(p+name);
         return  productoService.editarProducto(productoModel, id );
 
     }
+
+
+    @GetMapping("usuario/{idUsuario}")
+    public ArrayList<ProductoModel> obtenerProductoPorUsuario(@PathVariable Long idUsuario) {
+        UsuarioModel u = new UsuarioModel();
+       u= this.usuarioRepository.findByIdUsuario(idUsuario);
+    return productoService.obtenerPorIdUsuario(u);
+    }
+
 
 
 }

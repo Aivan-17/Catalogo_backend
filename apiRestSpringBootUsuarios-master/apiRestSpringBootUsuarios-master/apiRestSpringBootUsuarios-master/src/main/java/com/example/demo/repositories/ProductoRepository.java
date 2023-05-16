@@ -16,5 +16,6 @@ public interface ProductoRepository extends CrudRepository<ProductoModel, Long> 
     public abstract ArrayList<ProductoModel> findByNombre(String Nombre);
     public abstract ArrayList<ProductoModel> findByCategoria(String Categoria);
     public abstract ArrayList<ProductoModel> findByStatus(Integer status);
+   public abstract ArrayList<ProductoModel> findByIdUsuarioAndStatus(UsuarioModel usuarioModel,Integer status);
 
 }
