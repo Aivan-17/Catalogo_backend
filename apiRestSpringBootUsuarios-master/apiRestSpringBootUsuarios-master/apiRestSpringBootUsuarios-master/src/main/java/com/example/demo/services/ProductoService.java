@@ -39,6 +39,7 @@ public class ProductoService {
     public ProductoModel guardarProducto(ProductoModel producto) {
         producto.setIdUsuario(usuarioRepository.findById(producto.getIdUsuario().getId()).get());
         producto.setStatus(1);
+        producto.setVistas(0);
        // producto.setImagen(imagen);
 
 
@@ -86,7 +87,7 @@ public class ProductoService {
         productoModel.setMarca(newProductoModel.getMarca());
         productoModel.setDescripcion(newProductoModel.getDescripcion());
         productoModel.setNombre(newProductoModel.getNombre());
-        productoModel.setIdUsuario(newProductoModel.getIdUsuario());
+
         return ProductoRepository.save(productoModel);
     }
 

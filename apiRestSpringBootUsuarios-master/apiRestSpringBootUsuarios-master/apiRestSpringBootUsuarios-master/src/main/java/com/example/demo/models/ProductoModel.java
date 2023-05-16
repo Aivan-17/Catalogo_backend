@@ -22,9 +22,17 @@ public class ProductoModel {
         private String categoria;
 
         private Integer status;
+    private Integer vistas;
     //@Lob
     private String imagen;
 
+    public Integer getVistas() {
+        return vistas;
+    }
+
+    public void setVistas(Integer vistas) {
+        this.vistas = vistas;
+    }
 
     public String getImagen() {
         return imagen;
