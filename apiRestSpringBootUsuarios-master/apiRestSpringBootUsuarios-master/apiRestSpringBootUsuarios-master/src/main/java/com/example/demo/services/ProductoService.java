@@ -92,6 +92,14 @@ public class ProductoService {
 
         return ProductoRepository.save(productoModel);
     }
+public ProductoModel saveVista(ProductoModel newProductoModel, Long idProducto ){
+
+    ProductoModel productoModel = new ProductoModel();
+    productoModel = ProductoRepository.findById(idProducto).get();
+int x=newProductoModel.getVistas()+1;
+    productoModel.setVistas(x);
+    return ProductoRepository.save(productoModel);
+    }
 
 
 

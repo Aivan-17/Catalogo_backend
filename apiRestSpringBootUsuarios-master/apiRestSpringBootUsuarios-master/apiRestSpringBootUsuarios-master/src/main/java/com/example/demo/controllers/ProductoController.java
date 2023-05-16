@@ -142,6 +142,14 @@ producto.setImagen(p+name);
 
     }
 
+    @PutMapping(path = "vista/{id}")
+    public ProductoModel guardarVista(ProductoModel productoModel, @PathVariable("id") Long id  ){
+
+       productoModel = this.productoRepository.findByIdProducto(id);
+        return  productoService.saveVista(productoModel, id );
+
+    }
+
 
     @GetMapping("usuario/{idUsuario}")
     public ArrayList<ProductoModel> obtenerProductoPorUsuario(@PathVariable Long idUsuario) {
@@ -149,6 +157,8 @@ producto.setImagen(p+name);
        u= this.usuarioRepository.findByIdUsuario(idUsuario);
     return productoService.obtenerPorIdUsuario(u);
     }
+
+
 
 
 

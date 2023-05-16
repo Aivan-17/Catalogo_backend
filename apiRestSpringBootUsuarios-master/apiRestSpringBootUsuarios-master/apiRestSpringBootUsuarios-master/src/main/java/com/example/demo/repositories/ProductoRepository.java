@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductoRepository extends CrudRepository<ProductoModel, Long> {
-    public abstract ArrayList<ProductoModel> findByIdProducto(Integer idProducto);
+    public abstract ProductoModel findByIdProducto(Long idProducto);
     public abstract ArrayList<ProductoModel> findByMarca(String marca);
     public abstract ArrayList<ProductoModel> findByNombre(String Nombre);
     public abstract ArrayList<ProductoModel> findByCategoria(String Categoria);
