@@ -66,6 +66,17 @@ producto.setImagen(p+name);
 
     }
 
+
+
+    @PostMapping("/guardar")
+    public ProductoModel guardarProducto(@RequestBody ProductoModel producto) throws IOException {
+
+        return productoService.guardarProducto(producto);
+
+    }
+
+
+
     @PostMapping("/image")
     public void getImage(@RequestParam("image") MultipartFile file){
         String path= new File("apiRestSpringBootUsuarios-master/apiRestSpringBootUsuarios-master/src/main/images").getAbsolutePath();
@@ -158,7 +169,11 @@ producto.setImagen(p+name);
     return productoService.obtenerPorIdUsuario(u);
     }
 
+    @GetMapping("usuario/dash")
+    public ArrayList<Long> obtenerProductosPorMarca(@RequestParam("marca") String marca) {
 
+        return this.productoRepository.countAllByMarca(marca);
+    }
 
 
 
